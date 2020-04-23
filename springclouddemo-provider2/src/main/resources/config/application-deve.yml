@@ -1,0 +1,10 @@
+customize:
+  property: 秦朝勇3
+server:
+  port: 8082
+eureka:
+  server:
+    port: 8760
+  client:
+    service-url:
+      defaultZone: http://localhost:${eureka.server.port}/eureka/eureka/

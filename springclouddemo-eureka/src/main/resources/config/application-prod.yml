@@ -1,0 +1,7 @@
+server:
+  port: 8761
+eureka:
+  environment: PROD
+  client:
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka/eureka/

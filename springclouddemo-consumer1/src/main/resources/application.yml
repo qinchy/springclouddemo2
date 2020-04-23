@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: deve
+  application:
+    name: consumer1
+server:
+  servlet:
+    context-path: /consumer1

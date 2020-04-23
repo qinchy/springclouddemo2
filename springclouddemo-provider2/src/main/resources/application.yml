@@ -1,0 +1,19 @@
+customize:
+  property: 秦朝勇2
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /provider2
+spring:
+  profiles:
+    active: deve
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+  application:
+    name: provider2

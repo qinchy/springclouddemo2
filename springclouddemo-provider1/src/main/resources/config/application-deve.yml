@@ -1,0 +1,10 @@
+customize:
+  property: qincy3
+server:
+  port: 8080
+eureka:
+  server:
+    port: 8760
+  client:
+    service-url:
+      defaultZone: http://localhost:${eureka.server.port}/eureka/eureka/

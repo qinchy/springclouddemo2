@@ -1,0 +1,13 @@
+eureka:
+  datacenter: MYDC
+  client:
+    register-with-eureka: false     # whether register himself to eureka server
+    fetch-registry: false           # whether fetch data from eureka server
+spring:
+  application:
+    name: eureka
+  profiles:
+    active: deve
+server:
+  servlet:
+    context-path: /eureka

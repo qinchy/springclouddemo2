@@ -1,6 +1,8 @@
 package com.qinchy.springclouddemoprovider2.controller;
 
 
+import com.qinchy.springclouddemoprovider2.Constant.SeasonEnum;
+import com.qinchy.springclouddemoprovider2.Constant.WeekdayEnum;
 import com.qinchy.springclouddemoprovider2.domain.ConfigBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,6 +38,13 @@ public class ConfigController {
 
     @GetMapping("/config3")
     public String getName3() {
+        if (1 == SeasonEnum.SPRING.getSeq()) {
+            System.out.println(SeasonEnum.SPRING.getSeq());
+        }
+
+        WeekdayEnum.MONDAY.setValue(0);
+        System.out.println(WeekdayEnum.MONDAY.getValue());
+
         return property;
     }
 

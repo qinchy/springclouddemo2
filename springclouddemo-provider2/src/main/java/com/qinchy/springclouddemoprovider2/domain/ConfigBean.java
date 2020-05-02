@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
  
 @Component
 @ConfigurationProperties(prefix = "demo")
-@PropertySource(value = "customize.properties")
+@PropertySource(value = {"customize.properties"})
 public class ConfigBean {
  
     private String phone;

@@ -1,4 +1,4 @@
-package com.qinchy.springclouddemoprovider2;
+package com.qinchy.springclouddemoprovider1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

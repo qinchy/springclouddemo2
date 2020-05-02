@@ -1,4 +1,4 @@
-package com.qinchy.springclouddemoprovider2.Constant;
+package com.qinchy.springclouddemoprovider1.Constant;
 
 public enum WeekdayEnum {
     MONDAY(1),

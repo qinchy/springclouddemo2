@@ -1,9 +1,9 @@
-package com.qinchy.springclouddemoprovider2.controller;
+package com.qinchy.springclouddemoprovider1.controller;
 
 
-import com.qinchy.springclouddemoprovider2.Constant.SeasonEnum;
-import com.qinchy.springclouddemoprovider2.Constant.WeekdayEnum;
-import com.qinchy.springclouddemoprovider2.domain.ConfigBean;
+import com.qinchy.springclouddemoprovider1.Constant.SeasonEnum;
+import com.qinchy.springclouddemoprovider1.Constant.WeekdayEnum;
+import com.qinchy.springclouddemoprovider1.domain.ConfigBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @RestController
@@ -60,7 +61,7 @@ public class ConfigController {
         logger.info("c equals d?" + Objects.equals(c, d));
 
         WeekdayEnum.MONDAY.setValue(0);
-        logger.info("MONDAY VALUE = "+WeekdayEnum.MONDAY.getValue());
+        logger.info("MONDAY VALUE = " + WeekdayEnum.MONDAY.getValue());
 
         return property;
     }
@@ -70,4 +71,23 @@ public class ConfigController {
         return bean.getPhone();
     }
 
+    @GetMapping("/floatcompare1")
+    public boolean compare1() {
+        float a = 1.0f - 0.9f;
+        float b = 0.9f - 0.8f;
+        float diff = 1e-6f;
+        return Math.abs(a - b) < diff;
+    }
+
+    @GetMapping("/floatcompare2")
+    public boolean compare2() {
+        BigDecimal a = new BigDecimal("1.0");
+        BigDecimal b = new BigDecimal("0.9");
+        BigDecimal c = new BigDecimal("0.8");
+
+        BigDecimal x = a.subtract(b);
+        BigDecimal y = b.subtract(c);
+
+        return x.equals(y);
+    }
 }

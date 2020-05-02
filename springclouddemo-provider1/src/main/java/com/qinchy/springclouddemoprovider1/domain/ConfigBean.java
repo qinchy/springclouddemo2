@@ -1,4 +1,4 @@
-package com.qinchy.springclouddemoprovider2.domain;
+package com.qinchy.springclouddemoprovider1.domain;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;

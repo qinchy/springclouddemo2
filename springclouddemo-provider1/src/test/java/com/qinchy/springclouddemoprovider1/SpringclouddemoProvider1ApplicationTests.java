@@ -1,4 +1,4 @@
-package com.qinchy.springclouddemoprovider2;
+package com.qinchy.springclouddemoprovider1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

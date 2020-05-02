@@ -1,4 +1,4 @@
-package com.qinchy.springclouddemoprovider2.Constant;
+package com.qinchy.springclouddemoprovider1.Constant;
 
 public enum SeasonEnum {
     SPRING(1), SUMMER(2), AUTUMN(2), WINTER(4);

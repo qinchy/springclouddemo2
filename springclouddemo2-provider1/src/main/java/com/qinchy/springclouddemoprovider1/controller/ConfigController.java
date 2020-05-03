@@ -14,7 +14,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
@@ -74,7 +73,7 @@ public class ConfigController {
 
     @GetMapping("/config4")
     public String getName4() {
-        return bean.getPhone();
+        return bean.getName();
     }
 
     @GetMapping("/floatcompare1")
@@ -130,15 +129,64 @@ public class ConfigController {
     @GetMapping("/stream")
     public String stream() {
         System.out.println("对象的排序");
-        Stream.of(new Person(1, "qinchy1", "1"),
-                new Person(2, "qinchy2", "2"),
-                new Person(3, "qinchy3", "3"))
-                .filter(a-> a.getName().contains("qinchy"))
+        Stream.of(new Person(1, "qinchy1", 1),
+                new Person(2, "qinchy2", 2),
+                new Person(3, "qinchy3", 3))
+                .filter(a -> a.getName().contains("qinchy"))
                 .sorted(Person::compareTo)
                 .collect(Collectors.toList())
                 .stream().forEach(System.out::println);
 
-        String[] arrays = new String[]{"aa","bb","cc","dd"};
+        System.out.println("转成map，key为id，value为Person对象");
+        Map<Integer, Person> personMap1 = Stream.of(new Person(1, "qinchy1", 1),
+                new Person(2, "qinchy2", 2),
+                new Person(3, "qinchy3", 3))
+                .collect(Collectors.toMap(Person::getId, item -> item));
+
+        System.out.println("按id转成Map<Integer,List<Person>>");
+        Map<Integer, List<Person>> idListMap = Stream.of(new Person(1, "qinchy1", 1),
+                new Person(2, "qinchy2", 2),
+                new Person(3, "qinchy3", 3),
+                new Person(3, "qinchy4", 4))
+                .collect(Collectors.groupingBy(Person::getId));
+
+        System.out.println("按id转成Map<Integer,Long>，实现对每个id对应的对象有几个的数据模型，比如id=3的就有2个。");
+        Map<Integer, Long> idCountMap = Stream.of(new Person(1, "qinchy1", 1),
+                new Person(2, "qinchy2", 2),
+                new Person(3, "qinchy3", 3),
+                new Person(3, "qinchy4", 4))
+                .collect(Collectors.groupingBy(Person::getId, Collectors.counting()));
+
+        System.out.println("按id转成Map<Integer,Integer>，实现对每个id的年龄总和");
+        Map<Integer, Integer> sexCount = Stream.of(new Person(1, "qinchy1", 1),
+                new Person(2, "qinchy2", 2),
+                new Person(3, "qinchy3", 3),
+                new Person(3, "qinchy4", 4))
+                .collect(Collectors.groupingBy(Person::getId, Collectors.summingInt(Person::getAge)));
+
+        System.out.println("按id转成Map<Integer,Integer>，实现对每个id的年龄总和");
+        Map<Integer, Optional<Person>> idMaxMap = Stream.of(new Person(1, "qinchy1", 1),
+                new Person(2, "qinchy2", 2),
+                new Person(3, "qinchy3", 3),
+                new Person(3, "qinchy4", 4))
+                .collect(Collectors.groupingBy(Person::getId, Collectors.maxBy(Comparator.comparing(Person::getAge))));
+
+        System.out.println("按id转成Map<Integer,List<String>>，实现对每个id的名字列表");
+        Map<Integer, List<String>> nameMap =  Stream.of(new Person(1, "qinchy1", 1),
+                new Person(2, "qinchy2", 2),
+                new Person(3, "qinchy3", 3),
+                new Person(3, "qinchy4", 4))
+                .collect(Collectors.groupingBy(Person::getId,Collectors.mapping(Person::getName,Collectors.toList())));
+
+        System.out.println("按id转成Map<Integer,List<Person>>,id>=3的为一组，小于的为一组");
+        Map<Boolean, List<Person>> personMap3 =
+                Stream.of(new Person(1, "qinchy1", 1),
+                        new Person(2, "qinchy2", 2),
+                        new Person(3, "qinchy3", 3),
+                        new Person(3, "qinchy4", 4))
+                        .collect(Collectors.partitioningBy(item -> item.getId() >= 3));
+
+        String[] arrays = new String[]{"aa", "bb", "cc", "dd"};
 
         System.out.println("合并所有元素");
         System.out.println(Stream.of(arrays).collect(Collectors.joining()));
@@ -155,7 +203,7 @@ public class ConfigController {
         Stream.of(arrays).skip(1).forEach(s -> System.out.println(s));
 
         System.out.println("peek产生相同的流，支持每个元素调用一个函数");
-        Stream.of(arrays).peek(str -> System.out.println("item:"+str));
+        Stream.of(arrays).peek(str -> System.out.println("item:" + str));
 
         System.out.println("sorted 排序");
         Stream.of(arrays).sorted(Comparator.comparing(String::length).reversed());
@@ -184,7 +232,7 @@ public class ConfigController {
         list2.add("cc");
         list2.add("dd");
         System.out.println("合并两个list");
-        Stream.of(list1,list2).flatMap(str -> str.stream()).collect(Collectors.toList()).forEach(s -> System.out.println(s));
+        Stream.of(list1, list2).flatMap(str -> str.stream()).collect(Collectors.toList()).forEach(s -> System.out.println(s));
 
         System.out.println("generator生成无限长度的stream");
         Stream.generate(Math::random).limit(10).forEach(s -> System.out.println(s));
@@ -221,6 +269,15 @@ public class ConfigController {
         //findAny 找到任意一个就返回
         System.out.println(Stream.of("a", "b", "c", "d", "a").filter(str -> str.startsWith("a")).findAny().get());
 
+        Optional<String> optional = Optional.of("ssss");
+        optional.ifPresent(System.out::println);
+        String result1 = optional.orElse("defaultValue");
+        String result2 = optional.orElseGet(() -> getDefalutValue());
+
         return "Success";
+    }
+
+    private String getDefalutValue() {
+        return "";
     }
 }

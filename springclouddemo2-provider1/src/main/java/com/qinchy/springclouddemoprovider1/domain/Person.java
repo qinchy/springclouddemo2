@@ -5,12 +5,12 @@ import java.util.Objects;
 public class Person implements Comparable<Person> {
     private Integer id;
     private String name;
-    private String phone;
+    private Integer age;
 
-    public Person(Integer id, String name, String phone) {
+    public Person(Integer id, String name, Integer age) {
         this.id = id;
         this.name = name;
-        this.phone = phone;
+        this.age = age;
     }
 
     public Integer getId() {
@@ -29,12 +29,12 @@ public class Person implements Comparable<Person> {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     @Override
@@ -44,12 +44,12 @@ public class Person implements Comparable<Person> {
         Person person = (Person) o;
         return Objects.equals(id, person.id) &&
                 Objects.equals(name, person.name) &&
-                Objects.equals(phone, person.phone);
+                Objects.equals(age, person.age);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, phone);
+        return Objects.hash(id, name, age);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Person implements Comparable<Person> {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
+                ", age='" + age + '\'' +
                 '}';
     }
 

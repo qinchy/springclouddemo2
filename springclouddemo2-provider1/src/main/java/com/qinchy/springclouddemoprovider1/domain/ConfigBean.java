@@ -8,24 +8,24 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "demo")
 @PropertySource(value = {"customize.properties"})
 public class ConfigBean {
- 
-    private String phone;
- 
-    private String wife;
- 
-    public String getPhone() {
-        return phone;
+
+    private Integer age;
+
+    private String name;
+
+    public Integer getAge() {
+        return age;
     }
- 
-    public void setPhone(String phone) {
-        this.phone = phone;
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
- 
-    public String getWife() {
-        return wife;
+
+    public String getName() {
+        return name;
     }
- 
-    public void setWife(String wife) {
-        this.wife = wife;
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

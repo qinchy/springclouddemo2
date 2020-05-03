@@ -41,7 +41,7 @@ public class ConfigController {
 
     @GetMapping("/config4")
     public String getName4() {
-        return bean.getPhone();
+        return bean.getName();
     }
 
 }

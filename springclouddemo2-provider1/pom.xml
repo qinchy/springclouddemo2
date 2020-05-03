@@ -5,15 +5,15 @@
 
     <parent>
         <groupId>com.qinchy</groupId>
-        <artifactId>springclouddemo</artifactId>
+        <artifactId>springclouddemo2</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>com.qinchy</groupId>
-    <artifactId>springclouddemo-consumer1</artifactId>
+    <artifactId>springclouddemo2-provider1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springclouddemo-consumer1</name>
-    <description>springclouddemo-consumer1</description>
+    <name>springclouddemo2-provider1</name>
+    <description>springclouddemo2-provider1</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -25,6 +25,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
         <!-- Eureka客户端 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -32,13 +37,15 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>

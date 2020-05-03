@@ -10,17 +10,17 @@
     </parent>
 
     <groupId>com.qinchy</groupId>
-    <artifactId>springclouddemo</artifactId>
+    <artifactId>springclouddemo2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>springclouddemo</name>
-    <description>springclouddemo</description>
+    <name>springclouddemo2</name>
+    <description>springclouddemo2</description>
 
     <modules>
-        <module>springclouddemo-eureka</module>
-        <module>springclouddemo-provider1</module>
-        <module>springclouddemo-provider2</module>
-        <module>springclouddemo-consumer1</module>
+        <module>springclouddemo2-eureka</module>
+        <module>springclouddemo2-provider1</module>
+        <module>springclouddemo2-provider2</module>
+        <module>springclouddemo2-consumer1</module>
     </modules>
 
     <properties>

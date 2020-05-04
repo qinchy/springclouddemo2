@@ -76,6 +76,20 @@ public class ConfigController {
         return bean.getName();
     }
 
+    @GetMapping("/config5")
+    public String getName5(){
+        //<? super T>表示包括T在内的任何T的父类，<? extends T>表示包括T在内的任何T的子类。
+        //频繁往外读取内容的，适合用<? extends T>。 第二、 经常往里插入的，适合用<? super T>
+        List<? extends Number> integerArrayList1 = new ArrayList<Integer>();
+        Number number = integerArrayList1.get(0);
+
+        List<? super Integer> integerArrayList2 = new ArrayList<Integer>();
+        integerArrayList2.add(99);
+
+
+        return "";
+    }
+
     @GetMapping("/floatcompare1")
     public boolean compare1() {
         float a = 1.0f - 0.9f;
@@ -107,6 +121,13 @@ public class ConfigController {
     public boolean compare3() {
         BigDecimal a = new BigDecimal("0.1");
         BigDecimal b = BigDecimal.valueOf(0.1);
+
+        List<String> list = new ArrayList<>(2);
+        list.add("guan");
+        list.add("bao");
+        // 等于 0，动态创建与 size 相同的数组，性能最好
+        String[] array = list.toArray(new String[0]);
+        Arrays.stream(array).forEach(System.out::println);
 
         return a.equals(b);
     }

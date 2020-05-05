@@ -1,4 +1,4 @@
-package com.qinchy.springclouddemoprovider1.domain.generic2;
+package com.qinchy.springclouddemoprovider1.domain.generic3;
 
 import java.util.Objects;
 

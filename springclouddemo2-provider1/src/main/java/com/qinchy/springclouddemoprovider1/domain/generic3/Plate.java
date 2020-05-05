@@ -1,6 +1,6 @@
-package com.qinchy.springclouddemoprovider1.domain.generic2;
+package com.qinchy.springclouddemoprovider1.domain.generic3;
 
-public class Plate<T extends Food> {
+public class Plate<T> {
     private T item;
 
     public Plate(T item) {
